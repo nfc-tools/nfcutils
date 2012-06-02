@@ -1,4 +1,4 @@
-AC_INIT(nfcutils, 0.3.0, rconty@il4p.fr)
+AC_INIT([nfcutils],[0.3.1],[rconty@il4p.fr])
 
 AC_CONFIG_HEADER(config.h)
 
@@ -13,7 +13,7 @@ AC_DEFINE_UNQUOTED([SVN_REVISION], ["$SVN_REVISION"], [SVN revision])
 AM_INIT_AUTOMAKE
 m4_ifdef([AM_SILENT_RULES],[AM_SILENT_RULES([yes])])
 
-AC_LANG_C
+AC_LANG([C])
 AC_PROG_CC
 AC_PROG_MAKE_SET
 
@@ -59,7 +59,7 @@ fi
 AC_SUBST([DEBUG_CFLAGS])
 
 # Checks for pkg-config modules.
-LIBNFC_REQUIRED_VERSION=1.5.1
+LIBNFC_REQUIRED_VERSION=1.6.0
 PKG_CHECK_MODULES([libnfc], [libnfc >= $LIBNFC_REQUIRED_VERSION], [], [AC_MSG_ERROR([libnfc >= $LIBNFC_REQUIRED_VERSION is mandatory.])])
 
 AC_SUBST(libnfc_LIBS)

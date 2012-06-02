@@ -88,7 +88,7 @@ mifare_ultralight_identification(const nfc_iso14443a_info nai)
   };
   if((res = nfc_initiator_select_passive_target(pnd, nm, nai.abtUid, nai.szUidLen, NULL)) >= 0 ) {
     nfc_device_set_property_bool (pnd, NP_EASY_FRAMING, false);
-    if ((res = nfc_initiator_transceive_bytes(pnd, abtCmd,sizeof(abtCmd), abtRx, &szRxLen, 0)) >= 0) {
+    if ((res = nfc_initiator_transceive_bytes(pnd, abtCmd,sizeof(abtCmd), abtRx, sizeof(abtRx), 0)) >= 0) {
       // AUTH step1 command success, so it's a Ultralight C
       nfc_device_set_property_bool (pnd, NP_EASY_FRAMING, true);
       nfc_initiator_deselect_target(pnd);
@@ -126,13 +126,13 @@ mifare_desfire_identification(const nfc_iso14443a_info nai)
     .nbr = NBR_106
   };
   if((nfcRes = nfc_initiator_select_passive_target(pnd, nm, nai.abtUid, nai.szUidLen, NULL)) >= 0 ) {
-    if ((nfcRes = nfc_initiator_transceive_bytes(pnd, abtCmd, sizeof(abtCmd), abtRx, &szRxLen, 0)) >= 0) {
+    if ((nfcRes = nfc_initiator_transceive_bytes(pnd, abtCmd, sizeof(abtCmd), abtRx, sizeof(abtRx), 0)) >= 0) {
       // MIFARE DESFire GetVersion command success, decoding...
-      if( szRxLen == 8 ) { // GetVersion should reply 8 bytes
+      if( nfcRes == 8 ) { // GetVersion should reply 8 bytes
         memcpy( abtDESFireVersion, abtRx + 1, 7 );
         abtCmd[0] = 0xAF; // ask for GetVersion next bytes
-        if ((nfcRes = nfc_initiator_transceive_bytes(pnd, abtCmd, sizeof(abtCmd), abtRx, &szRxLen, 0)) >= 0) {
-          if( szRxLen == 8 ) { // GetVersion should reply 8 bytes
+        if ((nfcRes = nfc_initiator_transceive_bytes(pnd, abtCmd, sizeof(abtCmd), abtRx, sizeof(abtRx), 0)) >= 0) {
+          if( nfcRes == 8 ) { // GetVersion should reply 8 bytes
             memcpy( abtDESFireVersion + 7, abtRx + 1, 7 );
             res = malloc(16); // We can alloc res: we will be able to provide information
             bool bEV1 = ( ( abtDESFireVersion[3] == 0x01 ) && ( abtDESFireVersion[10] == 0x01 ) ); // Hardware major version and software major version should be equals to 1 to be an DESFire EV1
