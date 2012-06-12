@@ -62,7 +62,7 @@ struct felica_tag {
   const char *name;
 };
 
-void
+static void
 print_hex(const uint8_t *pbtData, size_t szData)
 {
   for (size_t i = 0; i < szData; i++) {
@@ -71,7 +71,7 @@ print_hex(const uint8_t *pbtData, size_t szData)
   printf("\n");
 }
 
-char *
+static char *
 mifare_ultralight_identification(const nfc_iso14443a_info nai)
 {
   uint8_t abtCmd[2];
@@ -111,7 +111,7 @@ Document used to code this function:
    AN094533
    DESFire EV1- Features and Hints
 */
-char *
+static char *
 mifare_desfire_identification(const nfc_iso14443a_info nai)
 {
   uint8_t abtCmd[] = { 0x60 }; // MIFARE DESFire GetVersion command
@@ -176,7 +176,7 @@ struct iso14443a_tag iso14443a_tags[] = {
   { 0x98, "Innovision R&T Jewel",       0, { 0 }, NULL },
 };
 
-void
+static void
 print_iso14443a_name(const nfc_iso14443a_info nai)
 {
   const char *tag_name[sizeof(iso14443a_tags) / sizeof(struct iso14443a_tag)];
@@ -243,7 +243,7 @@ struct felica_tag felica_tags[] = {
   { { 0xfe, 0xe1 }, "NFC Dynamic Tag (FeliCa Plug)" },
 };
 
-void
+static void
 print_nfc_felica_info(const nfc_felica_info nfi)
 {
   printf("        ID (NFCID2): ");
