@@ -76,7 +76,6 @@ mifare_ultralight_identification(const nfc_iso14443a_info nai)
 {
   uint8_t abtCmd[2];
   uint8_t abtRx[265];
-  size_t szRxLen;
   int res = 0;
 
   abtCmd[0] = 0x1A;  // MIFARE UltralightC Auth command
@@ -116,7 +115,6 @@ mifare_desfire_identification(const nfc_iso14443a_info nai)
 {
   uint8_t abtCmd[] = { 0x60 }; // MIFARE DESFire GetVersion command
   uint8_t abtRx[265];
-  size_t szRxLen;
   uint8_t abtDESFireVersion[14];
   char *res = NULL;
   int nfcRes = 0;
@@ -268,7 +266,6 @@ main(int argc, const char *argv[])
   uint8_t tag_count = 0;	// total
 
   size_t szDeviceFound;
-  size_t szTargetFound;
   int res = 0;
 
   (void)(argc);
