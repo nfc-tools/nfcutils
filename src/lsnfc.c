@@ -271,18 +271,19 @@ main(int argc, const char *argv[])
   (void)(argc);
   (void)(argv);
 
-  nfc_init(NULL);
+  nfc_context *context;
+  nfc_init(&context);
   // Try to open the NFC device
   nfc_connstring connstrings[MAX_DEVICE_COUNT];
 
-  szDeviceFound = nfc_list_devices(NULL, connstrings, MAX_DEVICE_COUNT);
+  szDeviceFound = nfc_list_devices(context, connstrings, MAX_DEVICE_COUNT);
 
   if (szDeviceFound == 0) {
     ERR("%s", "No device found.");
   }
 
   for (size_t i = 0; i < szDeviceFound; i++) {
-    pnd = nfc_open(NULL, connstrings[i]);
+    pnd = nfc_open(context, connstrings[i]);
     nfc_target ant[MAX_TARGET_COUNT];
 
     device_count++;
@@ -369,6 +370,6 @@ main(int argc, const char *argv[])
     printf("Total: %d tag(s) on %d device(s).\n", tag_count, device_count);
   }
 
-  nfc_exit(NULL);
+  nfc_exit(context);
   return EXIT_SUCCESS;
 }
