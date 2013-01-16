@@ -2,13 +2,13 @@ Source: nfcutils
 Section: devel
 Priority: optional
 Maintainer: Romuald Conty <rconty@il4p.fr>
-Build-Depends: debhelper (>= 5.0.37.2), libnfc-dev
+Build-Depends: debhelper (>= 5.0.37.2), libnfc-dev (>= 1.7.0)
 Standards-Version: 3.7.3
 Homepage: http://code.google.com/p/nfc-tools/wiki/nfcutils
 
 Package: nfcutils
 Architecture: any
-Depends: ${shlibs:Depends}, libnfc-dev (>= 1.6.0)
+Depends: ${shlibs:Depends}
 Description: Near Field Communication (NFC) utilities
  This package contains one utility for listing NFC devices and in-field tags or targets.
 
