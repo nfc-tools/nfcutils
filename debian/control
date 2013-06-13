@@ -1,7 +1,7 @@
 Source: nfcutils
 Section: devel
 Priority: optional
-Maintainer: Romuald Conty <rconty@il4p.fr>
+Maintainer: Romuald Conty <romuald@libnfc.org>
 Build-Depends: debhelper (>= 5.0.37.2), libnfc-dev (>= 1.7.0)
 Standards-Version: 3.7.3
 Homepage: http://code.google.com/p/nfc-tools/wiki/nfcutils
