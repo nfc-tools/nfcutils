@@ -311,8 +311,7 @@ main(int argc, const char *argv[])
       .nbr = NBR_106
     };
     if ((res = nfc_initiator_list_passive_targets(pnd, nm, ant, MAX_TARGET_COUNT)) >= 0) {
-      size_t n;
-      for (n = 0; n < res; n++) {
+      for (int n = 0; n < res; n++) {
         print_iso14443a_name(ant[n].nti.nai);
       }
       device_tag_count += res;
@@ -320,8 +319,7 @@ main(int argc, const char *argv[])
 
     nm.nmt = NMT_ISO14443B;
     if ((res = nfc_initiator_list_passive_targets(pnd, nm, ant, MAX_TARGET_COUNT)) >= 0) {
-      size_t n;
-      for (n = 0; n < res; n++) {
+      for (int n = 0; n < res; n++) {
         printf("  ISO14443B: ");
         printf("PUPI: ");
         print_hex(ant[n].nti.nbi.abtPupi, 4);
@@ -340,8 +338,7 @@ main(int argc, const char *argv[])
     nm.nbr = NBR_212;
     // List Felica tags
     if ((res = nfc_initiator_list_passive_targets(pnd, nm, ant, MAX_TARGET_COUNT)) >= 0) {
-      int n;
-      for (n = 0; n < res; n++) {
+      for (int n = 0; n < res; n++) {
         print_nfc_felica_info(ant[n].nti.nfi);
         printf("\n");
       }
@@ -350,8 +347,7 @@ main(int argc, const char *argv[])
 
     nm.nbr = NBR_424;
     if ((res = nfc_initiator_list_passive_targets(pnd, nm, ant, MAX_TARGET_COUNT)) >= 0) {
-      int n;
-      for (n = 0; n < res; n++) {
+      for (int n = 0; n < res; n++) {
         print_nfc_felica_info(ant[n].nti.nfi);
         printf("\n");
       }
