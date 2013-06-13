@@ -1,4 +1,4 @@
-AC_INIT([nfcutils],[0.3.1],[romuald@libnfc.org])
+AC_INIT([nfcutils],[0.3.2],[romuald@libnfc.org])
 
 AC_CONFIG_HEADER(config.h)
 
@@ -59,7 +59,7 @@ fi
 AC_SUBST([DEBUG_CFLAGS])
 
 # Checks for pkg-config modules.
-LIBNFC_REQUIRED_VERSION=1.6.0
+LIBNFC_REQUIRED_VERSION=1.7.0
 PKG_CHECK_MODULES([libnfc], [libnfc >= $LIBNFC_REQUIRED_VERSION], [], [AC_MSG_ERROR([libnfc >= $LIBNFC_REQUIRED_VERSION is mandatory.])])
 
 AC_SUBST(libnfc_LIBS)
